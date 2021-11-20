@@ -4,86 +4,38 @@
 var now = moment().format("dddd MMMM, Do");
 $("#currentDay").text(now);
 
-var currentHour = moment().format('h A')
+var currentHour = parseInt(moment().format('H')) //currentHour will be an integer from 0 to 23
 
-JSON.stringify(currentHour)
-console.log(currentHour)
-//time
-var time9 = $("#8AM")
-            .text();
-if (moment().isAfter(moment(time9, 'h A'))) {
-    $("#8AMF").addClass("past");
-  } else if (moment().isBefore(moment(time9, 'h A'))) {
-    $("#8AMF").addClass("future");
-  } else if (currentHour === time9) {
-    $("8AMF").addClass("present");
-  }
-  var time = $("#10AM")
-            .text();
-if (moment().isAfter(moment(time, 'h A'))) {
-    $("#10AMF").addClass("past");
-  } else if (moment().isBefore(moment(time, 'h A'))) {
-    $("#10AMF").addClass("future");
-  }
-  var time = $("#11AM")
-            .text();
-if (moment().isAfter(moment(time, 'h A'))) {
-    $("#11AMF").addClass("past");
-  } else if (moment().isBefore(moment(time, 'h A'))) {
-    $("#11AMF").addClass("future");
-  }
-  var time = $("#12PM")
-            .text();
-if (moment().isAfter(moment(time, 'h A'))) {
-    $("#12PMF").addClass("past");
-  } else if (moment().isBefore(moment(time, 'h A'))) {
-    $("#12PMF").addClass("future");
+for(var i = 9; i < 18; i++) {
+  var elem = $('#hour-' + i)
+  if (i < currentHour) {
+     //give elem the past class
+     elem.addClass("past");
+  } else if (i === currentHour) {
+     //give elem the present class
+     elem.addClass("present");
   } else {
-    $("#12AMF").addClass("present");
+     //give elem the future class
+     elem.addClass("future");
   }
-
-  var time1 = $("#1PM")
-            .text();
-if (moment('h A') === (time1)) {
-  $("#1PMF").addClass("present");
-}
-console.log(moment('h A'))
-  var time = $("#2PM")
-            .text();
-if (moment().isAfter(moment(time, 'h A'))) {
-    $("#2PMF").addClass("past");
-  } else if (moment().isBefore(moment(time, 'h A'))) {
-    $("#2PMF").addClass("future");
-  }
-  var time = $("#3PM")
-            .text();
-if (moment().isAfter(moment(time, 'h A'))) {
-    $("#3PMF").addClass("past");
-  } else if (moment().isBefore(moment(time, 'h A'))) {
-    $("#3PMF").addClass("future");
-  }
-  var time = $("#4PM")
-            .text();
-if (moment().isAfter(moment(time, 'h A'))) {
-    $("#4PMF").addClass("past");
-  } else if (moment().isBefore(moment(time, 'h A'))) {
-    $("#4PMF").addClass("future");
-  }
-  var time = $("#5PM")
-            .text();
-if (moment().isAfter(moment(time, 'h A'))) {
-    $("#5PMF").addClass("past");
-  } else if (moment().isBefore(moment(time, 'h A'))) {
-    $("#5PMF").addClass("future");
-  }
-
-
-var timeCheck = function(){
-    timeCheck = moment().format("h A");
-console.log(timeCheck);
 }
 
-var hour = moment(time, "h A")
+var saveEvent = function() {
+   console.log($(this).siblings("textarea").val());
+   var textBox = $(this).siblings("textarea").val();
+   var textBoxID = $(this).siblings(".description").attr("id");
+   localStorage.setItem(textBoxID, textBox);
+}
 
-console.log(time1)
+$("#hour-9").val(localStorage.getItem("hour-9"));
+$("#hour-10").val(localStorage.getItem("hour-10"));
+$("#hour-11").val(localStorage.getItem("hour-11"));
+$("#hour-12").val(localStorage.getItem("hour-12"));
+$("#hour-13").val(localStorage.getItem("hour-13"));
+$("#hour-14").val(localStorage.getItem("hour-14"));
+$("#hour-15").val(localStorage.getItem("hour-15"));
+$("#hour-16").val(localStorage.getItem("hour-16"));
+$("#hour-17").val(localStorage.getItem("hour-17"));
 
+
+$(".saveBtn").on("click", saveEvent)
