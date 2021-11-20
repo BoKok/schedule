@@ -11,7 +11,7 @@ Click on any box in each time slot, click the save icon to the right, and it wil
 The colors will notify you when past, present, and future is. The current date will always appear at the top of the page.
 
 
-![This is an image](https://github.com/BoKok/schedule/heading.PNG)
+![This is an image](heading.PNG)
 Credits
 Bo Kok
 SMU
